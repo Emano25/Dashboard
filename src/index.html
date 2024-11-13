@@ -13,12 +13,11 @@
 <link href="./output.css" rel="stylesheet">
 
 <body class="bg-gray-100">
-
     <!-- Sidebar -->
     <aside class="w-64 bg-white border-r h-screen p-6 fixed overflow-y-auto mx-3">
         <!-- Logo Section -->
         <div class="flex-col items-center justify-center mb-6 ml-3">
-            <h1 class="text-4xl font-bold text-gray-800">
+            <h1 class="text-4xl font-bold text-gray-800 sm:text-xl md:text-2xl lg:text-3xl">
                 Sedap<span class="text-green-500">.</span>
             </h1>
             <h3 class="text-sm text-gray-400 mt-2">Modern Admin Dashboard</h3>
@@ -84,14 +83,15 @@
                     style="background-color: #00B074;">
                     <!-- Conteneur en flex pour aligner le texte et l'image sur une ligne -->
                     <div class="flex items-start justify-between w-full mb-4">
-                        <p class="text-gray-600 text-start font-semibold mr-6" style="font-size: 12px;">
+                        <p class="text-white text-start font-semibold mr-6" style="font-size: 12px;">
                             Please, organize your <br> menus through the button below!
                         </p>
                         <img src="img/image1.png" alt="Total orders icon" class="h-20 w-20 mt-3 -mr-2">
                     </div>
 
                     <div class="flex justify-start w-full -mt-8">
-                        <button class="bg-white text-black px-4 py-2 rounded hover:bg-green-600">
+                        <button
+                            class="bg-white text-black px-4 py-2 rounded hover:bg-gray-100 hover:text-gray-800 transition duration-300 ease-in-out">
                             + Add Menus
                         </button>
                     </div>
@@ -106,6 +106,7 @@
         </nav>
 
     </aside>
+
 
 
     <!-- Main Content -->
@@ -159,17 +160,15 @@
                     </span>
                 </button>
             </div>
-
-
-
             <div class="flex items-center ml-6 space-x-2 mx-9">
                 <span class="border-l border-gray-300 h-6"></span> <!-- Séparation verticale -->
                 <span class="text-gray-600">Hello, Emmanuel</span>
                 <i class="fas fa-user-circle text-gray-600 text-2xl"></i>
             </div>
         </div>
-        <div class="flex flex-row justify-between items-center">
-            <div class="flex flex-col items-start mb-6 ml-12">
+
+        <div class="flex flex-row justify-between items-center md:items-center sm:items-center ">
+            <div class="flex flex-col items-start mb-6 ml-12  ">
                 <h1 class="text-3xl font-serif text-gray-800 mb-4">Dashboard</h1>
                 <h3 class="text-sm text-gray-400 mb-8 ">Hi, Emmanuel. Welcome back to Sedap Admin!</h3>
             </div>
@@ -187,14 +186,11 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
 
 
         <!-- Dashboard Stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 ml-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 ml-12 sm:grid-cols-2">
             <div class="flex flex-col bg-white  py-6 px-4  shadow-lg mb-10 mr-9 ml-0 h-32 "
                 style="border-radius: 14px;">
                 <div class="flex items-start space-x-4 mb-1">
@@ -312,13 +308,41 @@
                     </div>
 
                 </div>
-            <div  id="area-chart" style="width: 95%; height: 15px; margin-left: 10px; margin-top: -50px;" class="mb-2 mt-5"></div>
+                <div id="area-chart" style="width: 95%; height: 15px; margin-left: 10px; margin-top: -50px;"
+                    class="mb-2 mt-5"></div>
             </div>
         </div>
 
+        <div class="flex gap-4 ml-10 px-8 mt-5" style="margin-top: 40px; margin-left: 45px;">
+
+            <!-- Premier graphique -->
+            <div class="flex flex-col items-start bg-white py-6 px-4 shadow"
+                style="height: 90%; width: 120%; border-radius: 16px;">
+                <div class="mb-4 ml-5">
+                    <p class="font-barlow font-semibold text-sm leading-6 text-left">
+                        Chart Order
+                    </p>
+                </div>
+                <!-- Graphique -->
+                <div id="labels-chart" class="w-full h-full mt-6 mb-6"></div>
+            </div>
+        
+            <!-- Deuxième graphique -->
+            <div class="flex flex-col items-start bg-white py-6 px-4 shadow mb-5"
+                style="height: 80%; width: 70%; border-radius: 16px;">
+                <div class="mb-4 ml-5">
+                    <p class="font-barlow font-semibold text-sm leading-6 text-left">
+                        Column Chart
+                    </p>
+                </div>
+                <div id="column-chart" class="w-full h-full mt-6 mb-6"></div>
+            </div>
+        
+        </div>
+        
+    </div>
 
 
-    </div> <!-- Lenis Smooth Scrolling -->
 
 </body>
 
@@ -345,11 +369,10 @@
         }]
     };
 
-    // Options pour les graphiques de Chart.js
     const options = {
         responsive: true,
         maintainAspectRatio: false,
-        cutout: '50%' // Donne un style "anneau"
+        cutout: '50%'
     };
 
     // Initialisation des graphiques Chart.js
@@ -448,6 +471,230 @@
             chart.render();
         }
     });
+
+
+    const options2 = {
+        // set the labels option to true to show the labels on the X and Y axis
+        xaxis: {
+            show: true,
+            categories: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jun', 'Jui', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: {
+                show: true,
+                style: {
+                    fontFamily: "Inter, sans-serif",
+                    cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+                },
+
+
+            },
+            axisBorder: {
+                show: false,
+            },
+            axisTicks: {
+                show: false,
+            },
+        },
+        yaxis: {
+            show: true,
+            labels: {
+                show: true,
+                style: {
+                    fontFamily: "Inter, sans-serif",
+                    cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+                },
+                formatter: function (value) {
+                    return '$' + value + 'K';
+                }
+            }
+        },
+
+        series: [
+            {
+                name: "Developer Edition",
+                data: [150, 80, 155, 135, 160, 130, 155, 145, 160, 130, 155, 150],
+                color: "#2D9CDB",
+            },
+            {
+                name: "Designer Edition",
+                data: [45, 120, 50, 70, 45, 80, 50, 75, 45, 80, 50, 70],
+                color: "#FF5B5B",
+            },
+        ],
+
+        chart: {
+            sparkline: {
+                enabled: false
+            },
+            height: "100%",
+            width: "100%",
+            type: "area",
+            fontFamily: "Inter, sans-serif",
+            dropShadow: {
+                enabled: false,
+            },
+            toolbar: {
+                show: false,
+            },
+        },
+        tooltip: {
+            enabled: true,
+            shared: false, // Chaque série a sa propre infobulle
+            custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+                let color = w.config.series[seriesIndex].color; // Couleur de la série
+                let value = series[seriesIndex][dataPointIndex]; // Valeur de l'ordonnée
+                let name = w.config.series[seriesIndex].name; // Nom de la série
+
+                return `
+                <div style="
+                text-align: center;
+                    background-color: ${color}; 
+                    color: white; 
+                    padding: 10px; 
+                    border-radius: 5px; 
+                    opacity: 0.8;">
+                $ ${value} K
+                </div>
+            `;
+            },
+        },
+        fill: {
+            type: "gradient",
+            gradient: {
+                opacityFrom: 0,
+                opacityTo: 0,
+                shade: "#1C64F2",
+                gradientToColors: ["#1C64F2"],
+            },
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        stroke: {
+            width: 4,
+        },
+        legend: {
+            show: false
+        },
+        grid: {
+            show: false,
+        },
+    }
+
+    if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined') {
+        const chart = new ApexCharts(document.getElementById("labels-chart"), options2);
+        chart.render();
+    }
+
+    const options3 = {
+        colors: ["#1A56DB", "#FDBA8C"],
+        series: [
+            {
+                name: "Organic",
+                color: "#1A56DB",
+                data: [
+                    { x: "Mon", y: 231 },
+                    { x: "Tue", y: 0 },
+                    { x: "Wed", y: 63 },
+                    { x: "Thu", y: 0 },
+                    { x: "Fri", y: 122 },
+                    { x: "Sat", y: 0 },
+                    { x: "Sun", y: 111 },
+                ],
+            },
+            {
+                name: "Social media",
+                color: "#FDBA8C",
+                data: [
+                    { x: "Mon", y: 0 },
+                    { x: "Tue", y: 113 },
+                    { x: "Wed", y: 0 },
+                    { x: "Thu", y: 224 },
+                    { x: "Fri", y: 0 },
+                    { x: "Sat", y: 411 },
+                    { x: "Sun", y: 0 },
+                ],
+            },
+        ],
+        chart: {
+            type: "bar",
+            height: "320px",
+            fontFamily: "Inter, sans-serif",
+            toolbar: {
+                show: false,
+            },
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                columnWidth: "60%",
+                borderRadiusApplication: "end",
+                borderRadius: 0,
+            },
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            style: {
+                fontFamily: "Inter, sans-serif",
+            },
+        },
+        states: {
+            hover: {
+                filter: {
+                    type: "darken",
+                    value: 1,
+                },
+            },
+        },
+        stroke: {
+            show: true,
+            width: 0,
+            colors: ["transparent"],
+        },
+        grid: {
+            show: false,
+            strokeDashArray: 4,
+            padding: {
+                left: 2,
+                right: 2,
+                top: -14
+            },
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        legend: {
+            show: false,
+        },
+        xaxis: {
+            floating: false,
+            labels: {
+                show: true,
+                style: {
+                    fontFamily: "Inter, sans-serif",
+                    cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+                }
+            },
+            axisBorder: {
+                show: false,
+            },
+            axisTicks: {
+                show: false,
+            },
+        },
+        yaxis: {
+            show: false,
+        },
+        fill: {
+            opacity: 1,
+        },
+    }
+
+    if (document.getElementById("column-chart") && typeof ApexCharts !== 'undefined') {
+        const chart = new ApexCharts(document.getElementById("column-chart"), options3);
+        chart.render();
+    }
+
 
 </script>
 
